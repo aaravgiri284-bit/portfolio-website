@@ -1,0 +1,109 @@
+    /* Toggle button in navbar */
+    #themeToggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      backdrop-filter: blur(6px);
+      transition: transform .15s ease, background .2s ease, color .2s ease;
+    }
+    #themeToggle i { font-size: 16px; }
+    #themeToggle:hover { transform: translateY(-2px); }
+    /* Light theme (L3 - Warm) overrides */
+    [data-theme="light"] body,
+    [data-theme="light"] html {
+      background: #fffaf5 !important; /* warm cream */
+      color: #1f2937 !important; /* dark slate */
+    }
+    /* hide dark decorative gradients/blobs/particles for light mode */
+    [data-theme="light"] body::before,
+    [data-theme="light"] .bg-gradient,
+    [data-theme="light"] .bg-orb,
+    [data-theme="light"] .particles,
+    [data-theme="light"] .vignette {
+      display: none !important;
+    }
+    /* header / nav */
+    [data-theme="light"] header {
+
+
+      background: rgba(255,255,255,0.6) !important;
+      border-bottom-color: rgba(31,41,55,0.06) !important;
+      backdrop-filter: blur(6px);
+    }
+    [data-theme="light"] nav ul li a {
+      color: #334155 !important;
+    }
+    [data-theme="light"] nav ul li a:hover { color: #0f172a !important; }
+    /* Sections and text */
+    [data-theme="light"] section { color: #1f2937 !important; }
+    [data-theme="light"] h1, [data-theme="light"] h2, [data-theme="light"] h3, [data-theme="light"] p,
+    [data-theme="light"] a, [data-theme="light"] span, [data-theme="light"] label, [data-theme="light"] li {
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .skills-intro,
+    [data-theme="light"] .project-desc,
+    [data-theme="light"] .interest-card p,
+    [data-theme="light"] .about-highlight,
+    [data-theme="light"] .timeline-meta,
+    [data-theme="light"] .project-meta {
+      color: #374151 !important;
+    }
+    /* Cards */
+    [data-theme="light"] .about-card,
+    [data-theme="light"] .skill-card,
+    [data-theme="light"] .project,
+    [data-theme="light"] .interest-card,
+    [data-theme="light"] .service-card,
+    [data-theme="light"] footer,
+    [data-theme="light"] .contact form,
+    [data-theme="light"] .contact form input,
+    [data-theme="light"] .contact form textarea {
+      background: #fff !important;
+      border-color: rgba(15,23,42,0.06) !important;
+      box-shadow: 0 8px 30px rgba(15,23,42,0.06) !important;
+    }
+    [data-theme="light"] .hero-pill,
+    [data-theme="light"] .skills-tag,
+    [data-theme="light"] .tool-pill {
+      background: rgba(243, 244, 246, 0.9) !important;
+      color: #0f172a !important;
+      border-color: rgba(15,23,42,0.06) !important;
+    }
+    [data-theme="light"] #hireBtn {
+      background: linear-gradient(135deg,#f59e0b,#fb923c) !important;
+      color: #fff !important;
+      box-shadow: 0 10px 30px rgba(245,158,11,0.12) !important;
+    }
+    [data-theme="light"] .social a {
+      color: #0f172a !important;
+      border-color: rgba(15,23,42,0.06) !important;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.04) !important;
+      background: linear-gradient(180deg, #fff, #fff) !important;
+    }
+    /* links */
+    [data-theme="light"] a { color: #1f2937 !important; }
+    [data-theme="light"] #contact a { color: #1f2937 !important; }
+    /* ensure headings look right */
+    [data-theme="light"] section h2 { color: #0f172a !important; }
+    [data-theme="light"] section h2::after { box-shadow: none !important; opacity: 0.9; }
+    /* override inline colors where necessary (broad stroke) */
+    [data-theme="light"] * { color: inherit !important; }
+    /* make sure small accents still show */
+
+
+    [data-theme="light"] .hero-avatar {
+      background: radial-gradient(circle at 30% 20%, #111827, #ffffff) !important;
+      color: #111827 !important;
+      -webkit-background-clip: none !important;
+    }
+    /* theme toggle appearances for light/dark */
+    [data-theme="light"] #themeToggle { color: #92400e; background: rgba(255,250,244,0.7); border-color: rgba(16,24,40,0.06); }
+    [data-theme="dark"] #themeToggle { color: #fff; background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06); }
