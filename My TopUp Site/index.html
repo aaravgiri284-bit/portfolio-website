@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GameTopUp Hub – PUBG, Free Fire & MLBB Top-Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="GameTopUp Hub – Fast and secure top-up for PUBG UC, Free Fire Diamonds and Mobile Legends Diamonds. Pay via eSewa, Khalti or NMB Bank."
+  />
+  <style>
+    :root {
+      --bg-dark: #050814;
+      --bg-card: #0c1022;
+      --accent: #4f46e5;
+      --accent-2: #06b6d4;
+      --accent-soft: rgba(79, 70, 229, 0.18);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-soft: #1f2933;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.9);
+      --transition-fast: 0.2s ease-out;
+      --nav-height: 72px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.23rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: rgba(15, 23, 42, 0.7);
+      font-size: 0.78rem;
+      color: var(--accent-2);
+      margin-bottom: 0.8rem;
+    }
+
+    .tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.9);
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.96), rgba(2, 6, 23, 0.82) 60%, transparent);
+      border-bottom: 1px solid rgba(31, 41, 55, 0.6);
+    }
+
+    .nav {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 0.9rem;
+      background: radial-gradient(circle at 25% 0, #38bdf8 0, #4f46e5 40%, #a855f7 95%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      font-size: 1.02rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 0.35rem 0;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 999px;
+      transition: width var(--transition-fast);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-main);
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.7);
+    }
+
+    .btn-outline {
+      border-color: rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent-2);
+      color: var(--accent-2);
+      background: rgba(15, 23, 42, 1);
+    }
+
+    .btn-ghost {
+      border-color: rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+    }
+
+    .btn-icon {
+      font-size: 1.05rem;
+    }
+
+    .nav-toggle {
+      display: none;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      padding: 0.25rem 0.6rem;
+      font-size: 0.95rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 2.4rem;
+      padding-bottom: 4.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 2.8rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 2.9rem);
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-grad {
+      background: linear-gradient(135deg, #e5e7eb, #a5b4fc, #38bdf8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      max-width: 30rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .hero-meta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+    }
+
+    .hero-card {
+      position: relative;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      box-shadow: var(--shadow-soft);
+      padding: 1.5rem;
+      overflow: hidden;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: -40%;
+      opacity: 0.35;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(59, 130, 246, 0.45), transparent 55%),
+        radial-gradient(circle at 85% 10%, rgba(236, 72, 153, 0.35), transparent 55%),
+        radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.35), transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .chip {
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-muted);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .stat-card {
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.95));
+      border-radius: 0.9rem;
+      border: 1px solid rgba(75, 85, 99, 0.8);
+      padding: 0.65rem 0.7rem;
+      font-size: 0.72rem;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-value {
+      font-weight: 600;
+      font-size: 0.86rem;
+    }
+
+    .hero-game-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-game-info {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .hero-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 0.9rem;
+      background: conic-gradient(from 180deg, #38bdf8, #4f46e5, #f97316, #22c55e, #38bdf8);
+      padding: 2px;
+    }
+
+    .hero-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    .hero-game-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+
+    .hero-game-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .hero-game-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .hero-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-chip {
+      font-size: 0.7rem;
+      border-radius: 999px;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    .hero-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .hero-progress {
+      width: 110px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.9);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-progress-fill {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    .section-header {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 28rem;
+    }
+
+    /* Games grid */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .game-card {
+      background: radial-gradient(circle at top, #111827, #020617 70%);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background 0.25s ease-out;
+      cursor: pointer;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.95);
+      border-color: rgba(96, 165, 250, 0.9);
+      background: radial-gradient(circle at top, rgba(37, 99, 235, 0.3), #020617 70%);
+    }
+
+    .game-thumb {
+      height: 120px;
+      border-radius: 0.9rem;
+      background: linear-gradient(135deg, #4f46e5, #22c55e, #f97316);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      opacity: 0.95;
+    }
+
+    .game-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top right, rgba(15, 23, 42, 0.85), transparent 60%);
+    }
+
+    .game-label {
+      position: relative;
+      z-index: 1;
+    }
+
+    .game-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .game-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Steps */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .step-card {
+      background: radial-gradient(circle at top, #111827, #020617 60%);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 0.9rem;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .step-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, var(--accent-2), var(--accent));
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .step-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .info-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.7rem;
+    }
+
+    /* Payment methods cards */
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .payment-card {
+      background: radial-gradient(circle at top, #111827, #020617 70%);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 0.9rem;
+      font-size: 0.82rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.9);
+    }
+
+    .payment-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .payment-qr {
+      margin-top: 0.2rem;
+      border-radius: 0.9rem;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    /* Trust */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .trust-card {
+      background: radial-gradient(circle at top, #111827, #020617 70%);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 0.9rem;
+      font-size: 0.84rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .trust-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .faq-item {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.7rem 0.85rem;
+    }
+
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-size: 0.88rem;
+    }
+
+    .faq-a {
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: none;
+    }
+
+    .faq-item.open .faq-a {
+      display: block;
+    }
+
+    .faq-toggle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    form {
+      background: radial-gradient(circle at top, #111827, #020617 70%);
+      padding: 1.25rem;
+      border-radius: 1.3rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    }
+
+    .form-group {
+      margin-bottom: 0.8rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 0.2rem;
+      color: #e5e7eb;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.55rem 0.7rem;
+      color: var(--text-main);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.6);
+      background: rgba(15, 23, 42, 1);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .contact-side {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .contact-highlight {
+      background: radial-gradient(circle at top, rgba(52, 211, 153, 0.2), rgba(15, 23, 42, 0.95));
+      border-radius: 1.1rem;
+      border: 1px solid rgba(34, 197, 94, 0.7);
+      padding: 0.8rem;
+      color: #bbf7d0;
+      font-size: 0.8rem;
+    }
+
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .social-pill {
+      padding: 0.38rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.8rem;
+    }
+
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1.3rem 0 1.6rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-card {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+      .games-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .steps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .trust-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .payment-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-center, .nav-right-desktop {
+        display: none;
+      }
+      .nav-toggle {
+        display: inline-flex;
+      }
+      .nav-mobile {
+        display: none;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.7rem 0 0.9rem;
+        font-size: 0.9rem;
+      }
+      .nav-mobile.open {
+        display: flex;
+      }
+      .hero {
+        padding-top: 1.4rem;
+      }
+      .games-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .steps-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .trust-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .payment-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      section {
+        padding: 3.2rem 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-left">
+          <div class="logo-icon">GT</div>
+          <div>
+            <div class="logo-text-main">GameTopUp Hub</div>
+            <div class="logo-text-sub">PUBG · Free Fire · MLBB</div>
+          </div>
+        </div>
+        <div class="nav-center">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#games" class="nav-link">Games</a>
+          <a href="#how" class="nav-link">How It Works</a>
+          <a href="#payments" class="nav-link">Payments</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-right nav-right-desktop">
+          <a class="btn btn-ghost" href="#games">
+            View Packages
+          </a>
+          <a class="btn btn-primary" href="https://wa.me/9779842128071?text=Hello%20GameTopUp%20Hub%2C%20I%20want%20to%20top-up%20my%20game.">
+            <span class="btn-icon">💬</span> Order on WhatsApp
+          </a>
+        </div>
+        <button class="btn nav-toggle" id="navToggle">
+          ☰
+        </button>
+      </nav>
+      <div class="nav-mobile" id="navMobile">
+        <a href="#games" class="nav-link" onclick="toggleMobileNav()">Games</a>
+        <a href="#how" class="nav-link" onclick="toggleMobileNav()">How It Works</a>
+        <a href="#payments" class="nav-link" onclick="toggleMobileNav()">Payments</a>
+        <a href="#faq" class="nav-link" onclick="toggleMobileNav()">FAQ</a>
+        <a href="#contact" class="nav-link" onclick="toggleMobileNav()">Contact</a>
+        <a class="btn btn-primary" style="margin-top:0.4rem;"
+           href="https://wa.me/9779842128071?text=Hello%20GameTopUp%20Hub%2C%20I%20want%20to%20top-up%20my%20game.">
+          💬 WhatsApp Order
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="tag">
+              <span class="tag-dot"></span>
+              <span>GameTopUp Hub · Nepal & Worldwide</span>
+            </div>
+            <h1 class="hero-title">
+              <span class="hero-grad">Instant Top-Up</span> for PUBG, Free Fire & MLBB
+            </h1>
+            <p class="hero-subtitle">
+              Fast, safe and affordable UC & diamonds for PUBG Mobile, Garena Free Fire
+              and Mobile Legends. Pay using eSewa, Khalti or NMB Bank and get delivery
+              in minutes.
+            </p>
+            <div class="hero-badges">
+              <span class="pill">⏱️ Delivery in 5–15 minutes*</span>
+              <span class="pill">🔒 No password required – only UID / Player ID</span>
+            </div>
+            <div class="hero-actions">
+              <button class="btn btn-primary" onclick="scrollToSection('games')">
+                ⚡ View Games
+              </button>
+              <a
+                href="https://wa.me/9779842128071?text=Hello%20GameTopUp%20Hub%2C%20I%20want%20to%20top-up%20my%20game."
+                class="btn btn-outline"
+              >
+                💬 Chat on WhatsApp
+              </a>
+            </div>
+            <div class="hero-meta">
+              <span><span class="hero-meta-dot"></span> Live · Usually online</span>
+              <span>⭐ Trusted by PUBG / FF / MLBB players</span>
+              <span>🇳🇵 Based in Nepal – global delivery</span>
+            </div>
+          </div>
+
+          <aside class="hero-card">
+            <div class="hero-orbit"></div>
+            <div class="hero-card-inner">
+              <div class="hero-card-header">
+                <span class="chip">Sample Live Orders</span>
+                <span class="chip">Today · 02:17 PM</span>
+              </div>
+              <div class="hero-stats">
+                <div class="stat-card">
+                  <div class="stat-label">Orders today</div>
+                  <div class="stat-value">36</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-label">Avg. delivery</div>
+                  <div class="stat-value">8 min</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-label">Success rate</div>
+                  <div class="stat-value">99.2%</div>
+                </div>
+              </div>
+              <div class="hero-game-row">
+                <div class="hero-game-info">
+                  <div class="hero-avatar">
+                    <div class="hero-avatar-inner">PUBG</div>
+                  </div>
+                  <div class="hero-game-text">
+                    <div class="hero-game-title">PUBG Mobile · 660 UC</div>
+                    <div class="hero-game-sub">eSewa · UID: 5xxxxxxx</div>
+                  </div>
+                </div>
+                <button class="btn btn-ghost" style="font-size:0.78rem;padding-inline:0.7rem;">
+                  Mark Delivered
+                </button>
+              </div>
+              <div class="hero-chip-row">
+                <span class="hero-chip">PUBG UC</span>
+                <span class="hero-chip">Free Fire Diamonds</span>
+                <span class="hero-chip">MLBB Diamonds</span>
+              </div>
+              <div class="hero-card-footer">
+                <span>Live rates: <strong>see game pages</strong></span>
+                <div class="hero-progress">
+                  <div class="hero-progress-fill"></div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Games -->
+    <section id="games">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Supported Games</h2>
+            <p class="section-subtitle">
+              Right now we focus on the three most requested games. Click any game to see full pricing and order form.
+            </p>
+          </div>
+          <button class="btn btn-outline" onclick="scrollToSection('payments')">
+            See Payment Options ⤵
+          </button>
+        </div>
+
+        <div class="games-grid">
+          <!-- PUBG card -->
+          <article class="game-card" onclick="window.location.href='pubg.html'">
+            <div class="game-thumb">
+              <div class="game-overlay"></div>
+              <div class="game-label">PUBG Mobile</div>
+            </div>
+            <div class="game-name">PUBG Mobile</div>
+            <div class="game-meta">UC · Royale Pass, crates, bundles</div>
+          </article>
+
+          <!-- Free Fire card -->
+          <article class="game-card" onclick="window.location.href='freefire.html'">
+            <div class="game-thumb" style="background:linear-gradient(135deg,#ea580c,#16a34a,#22c55e);">
+              <div class="game-overlay"></div>
+              <div class="game-label">Free Fire</div>
+            </div>
+            <div class="game-name">Garena Free Fire</div>
+            <div class="game-meta">Diamonds · skins, bundles, events</div>
+          </article>
+
+          <!-- MLBB card -->
+          <article class="game-card" onclick="window.location.href='mlbb.html'">
+            <div class="game-thumb" style="background:linear-gradient(135deg,#a855f7,#6366f1,#f97316);">
+              <div class="game-overlay"></div>
+              <div class="game-label">Mobile Legends</div>
+            </div>
+            <div class="game-name">Mobile Legends: Bang Bang</div>
+            <div class="game-meta">Diamonds · skins, starlight, passes</div>
+          </article>
+
+          <!-- Coming soon -->
+          <article class="game-card" style="opacity:0.4;cursor:default;">
+            <div class="game-thumb" style="background:linear-gradient(135deg,#6b7280,#4b5563,#374151);">
+              <div class="game-overlay"></div>
+              <div class="game-label">More Soon</div>
+            </div>
+            <div class="game-name">Coming Soon</div>
+            <div class="game-meta">More games will be added later.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">
+              Simple 4-step process. No login needed, no password required. We
+              only ask for your UID / Player ID and server (if required).
+            </p>
+          </div>
+          <span class="pill">🔑 We never ask for your password</span>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-title">Choose game &amp; package</div>
+            <p>
+              Open the specific game page (PUBG, Free Fire or MLBB) and decide how much UC or diamonds you want.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-title">Fill order form or WhatsApp</div>
+            <p>
+              Use the order form on that page or tap the WhatsApp button and send your
+              game, UID and selected package.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-title">Pay using QR / bank</div>
+            <p>
+              Scan eSewa, Khalti or NMB Bank QR and send the payment. Attach
+              screenshot of payment for faster confirmation.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-title">Receive top-up</div>
+            <p>
+              After we confirm payment, we load the UC / diamonds directly to
+              your account, usually within 5–15 minutes.
+            </p>
+          </article>
+        </div>
+
+        <p class="info-note">
+          *Actual delivery time may vary slightly depending on server status,
+          game maintenance and payment confirmation time.
+        </p>
+      </div>
+    </section>
+
+    <!-- Payment Methods with QR -->
+    <section id="payments">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Payment Options</h2>
+            <p class="section-subtitle">
+              Scan any of these QR codes to pay. After paying, send your payment
+              screenshot + UID via game page or WhatsApp.
+            </p>
+          </div>
+          <span class="pill">📸 Screenshot required for every payment</span>
+        </div>
+
+        <div class="payment-grid">
+          <!-- eSewa -->
+          <article class="payment-card">
+            <div class="payment-title">eSewa (Recommended)</div>
+            <div class="payment-qr">
+              <img src="esewa-qr.png" alt="eSewa QR – Arjun Paudel 9842128071">
+            </div>
+            <div><strong>Name:</strong> Arjun Paudel</div>
+            <div><strong>Number:</strong> 9842128071</div>
+            <div><strong>Note:</strong> Add your game + UID in remarks.</div>
+          </article>
+
+          <!-- Khalti -->
+          <article class="payment-card">
+            <div class="payment-title">Khalti</div>
+            <div class="payment-qr">
+              <img src="khalti-qr.png" alt="Khalti QR – Kalpana Giri 9842128071">
+            </div>
+            <div><strong>Name:</strong> Kalpana Giri</div>
+            <div><strong>Number:</strong> 9842128071</div>
+            <div><strong>Note:</strong> Write “GameTopUp Hub” in remarks.</div>
+          </article>
+
+          <!-- NMB Bank -->
+          <article class="payment-card">
+            <div class="payment-title">NMB Bank QR / Transfer</div>
+            <div class="payment-qr">
+              <img src="nmb-qr.png" alt="NMB Bank QR – AARAV GIRI 0540253403100012">
+            </div>
+            <div><strong>Bank:</strong> NMB Bank Limited</div>
+            <div><strong>Account Name:</strong> AARAV GIRI</div>
+            <div><strong>Account No:</strong> 0540253403100012</div>
+            <div><strong>Branch Code:</strong> 054</div>
+            <div><strong>Note:</strong> Use bank transfer if wallets are down.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust / reviews -->
+    <section id="trust">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Why Gamers Trust GameTopUp Hub</h2>
+            <p class="section-subtitle">
+              Transparent pricing, real payment options and clear communication.
+            </p>
+          </div>
+        </div>
+
+        <div class="trust-grid">
+          <article class="trust-card">
+            <div class="trust-title">⚡ Fast Delivery</div>
+            <p>
+              Most orders are processed in under 15 minutes after payment is
+              confirmed. We notify you as soon as it is done.
+            </p>
+          </article>
+          <article class="trust-card">
+            <div class="trust-title">🔒 Secure Payments</div>
+            <p>
+              All payments go through official wallet or bank channels only.
+              We never ask for your password or OTP.
+            </p>
+          </article>
+          <article class="trust-card">
+            <div class="trust-title">💰 Fair Prices</div>
+            <p>
+              No hidden fees. Prices you see on each game page are exactly what you pay.
+            </p>
+          </article>
+          <article class="trust-card">
+            <div class="trust-title">💬 Friendly Support</div>
+            <p>
+              If something goes wrong, message us on WhatsApp and we will help
+              you fix it as soon as possible.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">
+              Still confused? These are the most common questions we get.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>How long does a top-up usually take?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">
+              Most orders are completed within 5–15 minutes after we confirm
+              your payment and UID / Player ID. During heavy traffic or game
+              server issues, it might take a little longer, but we try to be as
+              fast as possible.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Which payment methods do you accept?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">
+              We currently accept eSewa, Khalti and NMB Bank QR / bank transfer.
+              If you need another method, message us on WhatsApp and we will see
+              if we can arrange it.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>What details do you need from me?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">
+              We only ask for your game name, region/server (if required),
+              UID / Player ID, selected package, and payment screenshot. We never
+              ask for passwords, OTP codes or full logins.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Is it safe to top up here?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">
+              Yes. We use official payment channels, and the top-up is sent
+              directly to your in-game account using your UID / Player ID. We do
+              not log into your game account.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>What if I do not receive my top-up?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">
+              If the top-up is delayed or not delivered, contact us immediately
+              with your payment screenshot and UID. We will check the order and
+              either complete the top-up or refund according to our policy.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Contact &amp; Order</h2>
+            <p class="section-subtitle">
+              Fill this form to place an order or tap the WhatsApp button for
+              quick chat. Always send your payment screenshot.
+            </p>
+          </div>
+          <span class="pill">🧾 Please double-check your UID / Player ID</span>
+        </div>
+
+        <div class="contact-grid">
+          <form onsubmit="event.preventDefault(); alert('Form submitted (demo). Connect this to your backend or form service.');">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your full name" required />
+            </div>
+            <div class="form-group">
+              <label for="contactField">Phone or Email</label>
+              <input id="contactField" type="text" placeholder="+9779842... or email" required />
+            </div>
+            <div class="form-group">
+              <label for="game">Game</label>
+              <select id="game" required>
+                <option value="">Select your game</option>
+                <option>PUBG Mobile</option>
+                <option>Free Fire</option>
+                <option>Mobile Legends: Bang Bang</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="playerId">UID / Player ID (and server if required)</label>
+              <input id="playerId" type="text" placeholder="e.g. 5123456789 (Asia Server)" required />
+            </div>
+            <div class="form-group">
+              <label for="package">Selected Package / Amount</label>
+              <input id="package" type="text" placeholder="e.g. 660 UC, 1480 Diamonds, Weekly Pass" required />
+            </div>
+            <div class="form-group">
+              <label for="paymentMethod">Payment Method</label>
+              <select id="paymentMethod" required>
+                <option value="">Choose payment method</option>
+                <option>eSewa</option>
+                <option>Khalti</option>
+                <option>NMB Bank</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Notes (optional)</label>
+              <textarea id="message" placeholder="Add payment reference, time or any question..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;margin-top:0.4rem;">
+              ⚡ Submit Order / Enquiry
+            </button>
+            <a
+              href="https://wa.me/9779842128071?text=Hello%20GameTopUp%20Hub%2C%20I%20have%20paid%20for%20a%20top-up.%20Here%20is%20my%20UID%20and%20screenshot."
+              class="btn btn-outline"
+              style="width:100%;margin-top:0.5rem;justify-content:center;"
+            >
+              💬 Order / Send Screenshot on WhatsApp
+            </a>
+          </form>
+
+          <div class="contact-side">
+            <div class="contact-highlight">
+              <strong>Quick tip:</strong> First scan the QR and pay. Then send your
+              UID + payment screenshot on WhatsApp for the fastest processing.
+            </div>
+            <div>
+              <strong>Direct contact</strong>
+              <ul style="margin-top:0.3rem; padding-left:1rem;">
+                <li>WhatsApp: +977 9842128071</li>
+                <li>Primary contact for all games.</li>
+              </ul>
+            </div>
+            <div>
+              <strong>Social (optional)</strong>
+              <div class="social-row" style="margin-top:0.4rem;">
+                <span class="social-pill">💬 WhatsApp</span>
+                <span class="social-pill">📸 Instagram</span>
+                <span class="social-pill">📘 Facebook</span>
+              </div>
+            </div>
+            <div>
+              <strong>Service hours</strong>
+              <p style="margin-top:0.3rem;">
+                Mostly active in evenings and weekends (Nepal time). If we do
+                not reply instantly, we will respond as soon as possible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <div>
+          © <span id="year"></span> GameTopUp Hub. All rights reserved.
+          This site is not affiliated with or endorsed by any game publisher.
+        </div>
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#games">Games</a>
+          <a href="#payments">Payments</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Smooth scroll helper
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const navMobile = document.getElementById("navMobile");
+
+    function toggleMobileNav() {
+      navMobile.classList.toggle("open");
+    }
+
+    navToggle.addEventListener("click", toggleMobileNav);
+
+    // FAQ toggle
+    function toggleFaq(headerEl) {
+      const item = headerEl.closest(".faq-item");
+      item.classList.toggle("open");
+      const sign = headerEl.querySelector(".faq-toggle");
+      sign.textContent = item.classList.contains("open") ? "−" : "+";
+    }
+  </script>
+</body>
+</html>
+
+
+

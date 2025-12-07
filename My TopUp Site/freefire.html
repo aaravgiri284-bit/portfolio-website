@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Free Fire Diamond Top-Up – GameTopUp Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #020617;
+      color: #e5e7eb;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 0 16px;
+      border-bottom: 1px solid #1f2937;
+      flex-wrap: wrap;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 20% 0, #38bdf8, #4f46e5, #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+    }
+
+    .logo-title {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .logo-sub {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    .whats-btn {
+      background: #22c55e;
+      color: #022c22;
+      border-radius: 999px;
+      padding: 6px 14px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 10px 20px rgba(34, 197, 94, 0.4);
+      white-space: nowrap;
+    }
+
+    /* main layout */
+    .layout {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+      gap: 16px;
+    }
+
+    .card {
+      border-radius: 16px;
+      border: 1px solid #111827;
+      background: #020617;
+      padding: 14px 16px;
+    }
+
+    .card + .card {
+      margin-top: 10px;
+    }
+
+    /* left: game info + description */
+    .game-info {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .game-thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      background: linear-gradient(135deg,#f97316,#22c55e,#38bdf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .game-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+      font-size: 0.78rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border-radius: 999px;
+      padding: 3px 9px;
+      background: #020617;
+      border: 1px solid #1f2937;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+    }
+
+    .game-note {
+      margin-top: 6px;
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    .desc-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .desc-text {
+      font-size: 0.85rem;
+      color: #d1d5db;
+      line-height: 1.45;
+    }
+
+    /* right: step cards */
+    .step-card {
+      border-radius: 16px;
+      border: 1px solid #111827;
+      background: #020617;
+      overflow: hidden;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: #f97316;
+      color: #111827;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: #111827;
+      color: #f97316;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .step-body {
+      padding: 12px 14px 14px;
+      font-size: 0.85rem;
+    }
+
+    .form-row {
+      margin-bottom: 8px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 0.8rem;
+    }
+
+    input {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #374151;
+      background: #020617;
+      color: #e5e7eb;
+      padding: 7px 9px;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 1px rgba(56,189,248,0.7);
+    }
+
+    .small-note {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    .subheading {
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* package grid */
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .pkg-card {
+      border-radius: 10px;
+      background: #111827;
+      padding: 8px 9px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      border: 1px solid #1f2937;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out, background 0.15s ease-out;
+    }
+
+    .pkg-main {
+      font-weight: 600;
+      font-size: 0.86rem;
+    }
+
+    .pkg-price {
+      color: #22c55e;
+      font-size: 0.8rem;
+    }
+
+    .pkg-icon {
+      margin-left: auto;
+      font-size: 1.1rem;
+    }
+
+    .pkg-card:hover {
+      transform: translateY(-1px);
+      border-color: #38bdf8;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.85);
+    }
+
+    .pkg-card.active {
+      background: #0f172a;
+      border-color: #38bdf8;
+      box-shadow: 0 10px 22px rgba(37,99,235,0.7);
+    }
+
+    /* buy button */
+    .buy-btn {
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #f97316;
+      color: #111827;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 10px 26px rgba(248, 150, 60, 0.6);
+    }
+
+    .buy-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(248, 150, 60, 0.8);
+    }
+
+    /* payment info mini-card */
+    .pay-info-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .pay-info-list {
+      font-size: 0.8rem;
+      color: #d1d5db;
+      line-height: 1.5;
+      padding-left: 1rem;
+    }
+
+    .back-link {
+      margin-top: 16px;
+      font-size: 0.85rem;
+    }
+    .back-link a {
+      color: #38bdf8;
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 24px;
+      padding: 12px 0 20px;
+      border-top: 1px solid #1f2937;
+      font-size: 0.78rem;
+      color: #9ca3af;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .pkg-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-wrap">
+      <div class="logo-icon">GT</div>
+      <div>
+        <div class="logo-title">GameTopUp Hub</div>
+        <div class="logo-sub">Free Fire · PUBG · MLBB</div>
+      </div>
+    </div>
+    <button class="whats-btn"
+      onclick="window.open('https://wa.me/9779842128071?text=Hello%20GameTopUp%20Hub%2C%20I%20want%20Free%20Fire%20diamonds.','_blank')">
+      💬 Chat on WhatsApp
+    </button>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main class="layout">
+    <!-- LEFT SIDE -->
+    <div>
+      <!-- Game info card -->
+      <div class="card">
+        <div class="game-info">
+          <div class="game-thumb">FF</div>
+          <div>
+            <div class="game-title">Free Fire (Nepal)</div>
+            <div class="badge-row">
+              <div class="badge">
+                ⏱ 1 Min (avg)
+              </div>
+              <div class="badge">
+                🌏 Nepal / Bangladesh UID only
+              </div>
+            </div>
+            <div class="game-note">
+              All purchases are <b>NON-REFUNDABLE</b> and <b>NON-RETURNABLE</b>.
+              Please double-check your UID before paying.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description card -->
+      <div class="card">
+        <div class="desc-title">
+          Top Up Free Fire Diamonds Instantly in Nepal – Fast, Easy & Secure
+        </div>
+        <p class="desc-text">
+          Need to top up Free Fire diamonds quickly? Just send your Free Fire
+          Player ID (UID), select a diamond package, complete the payment and
+          your diamonds will be added to your account.
+        </p>
+        <p class="desc-text" style="margin-top:8px;">
+          We accept popular Nepali payment methods like <b>eSewa</b>,
+          <b>Khalti</b> and <b>NMB Bank</b>. After payment, simply send your
+          screenshot on WhatsApp and we’ll process your order as soon as
+          possible.
+        </p>
+      </div>
+
+      <!-- Payment info mini card -->
+      <div class="card">
+        <div class="pay-info-title">Payment Details (Nepal)</div>
+        <ul class="pay-info-list">
+          <li><b>eSewa:</b> 9842128071 </li>
+          <li><b>Khalti:</b> 9842128071 </li>
+          <li><b>NMB Bank:</b> AARAV GIRI – 0540253403100012 (Branch 054)</li>
+          <li>After paying, send <b>UID + package + screenshot</b> on WhatsApp.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE: step cards -->
+    <div>
+      <!-- STEP 1 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-num">1</span>
+          <span>Enter Your Account Data</span>
+        </div>
+        <div class="step-body">
+          <div class="form-row">
+            <label for="uid">Free Fire UID (Player ID)</label>
+            <input id="uid" type="text" placeholder="Example: 123456789" />
+          </div>
+          <div class="form-row">
+            <label for="ign">In-Game Name (optional)</label>
+            <input id="ign" type="text" placeholder="Your Free Fire name" />
+          </div>
+          <p class="small-note">
+            We only need your UID and name to send diamonds. <b>Never</b> share
+            your password or OTP with anyone.
+          </p>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step-card" style="margin-top:12px;">
+        <div class="step-header" style="background:#f97316;">
+          <span class="step-num">2</span>
+          <span>Select the Amount You Want to Buy</span>
+        </div>
+        <div class="step-body">
+          <div class="subheading">⚡ TOPUP</div>
+          <div class="pkg-grid" id="pkgGrid">
+            <!-- each package card has data-package for WhatsApp text -->
+            <div class="pkg-card" data-package="25💎 = 25💵">
+              <div class="pkg-main">25 Diamonds</div>
+              <div class="pkg-price">25💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="50💎 = 50💵">
+              <div class="pkg-main">50 Diamonds</div>
+              <div class="pkg-price">50💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="115💎 = 93💵">
+              <div class="pkg-main">115 Diamonds</div>
+              <div class="pkg-price">93💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+
+            <div class="pkg-card" data-package="240💎 = 186💵">
+              <div class="pkg-main">240 Diamonds</div>
+              <div class="pkg-price">186💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="355💎 = 280💵">
+              <div class="pkg-main">355 Diamonds</div>
+              <div class="pkg-price">280💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="480💎 = 375💵">
+              <div class="pkg-main">480 Diamonds</div>
+              <div class="pkg-price">375💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+
+            <div class="pkg-card" data-package="610💎 = 465💵">
+              <div class="pkg-main">610 Diamonds</div>
+              <div class="pkg-price">465💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="725💎 = 560💵">
+              <div class="pkg-main">725 Diamonds</div>
+              <div class="pkg-price">560💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="850💎 = 655💵">
+              <div class="pkg-main">850 Diamonds</div>
+              <div class="pkg-price">655💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+
+            <div class="pkg-card" data-package="965💎 = 745💵">
+              <div class="pkg-main">965 Diamonds</div>
+              <div class="pkg-price">745💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="1090💎 = 840💵">
+              <div class="pkg-main">1090 Diamonds</div>
+              <div class="pkg-price">840💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="1240💎 = 930💵">
+              <div class="pkg-main">1240 Diamonds</div>
+              <div class="pkg-price">930💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+
+            <div class="pkg-card" data-package="1480💎 = 1120💵">
+              <div class="pkg-main">1480 Diamonds</div>
+              <div class="pkg-price">1120💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="1595💎 = 1210💵">
+              <div class="pkg-main">1595 Diamonds</div>
+              <div class="pkg-price">1210💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="1720💎 = 1305💵">
+              <div class="pkg-main">1720 Diamonds</div>
+              <div class="pkg-price">1305💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+
+            <div class="pkg-card" data-package="1850💎 = 1395💵">
+              <div class="pkg-main">1850 Diamonds</div>
+              <div class="pkg-price">1395💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="1965💎 = 1490💵">
+              <div class="pkg-main">1965 Diamonds</div>
+              <div class="pkg-price">1490💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="2090💎 = 1585💵">
+              <div class="pkg-main">2090 Diamonds</div>
+              <div class="pkg-price">1585💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+
+            <div class="pkg-card" data-package="2530💎 = 1860💵">
+              <div class="pkg-main">2530 Diamonds</div>
+              <div class="pkg-price">1860💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="3140💎 = 2325💵">
+              <div class="pkg-main">3140 Diamonds</div>
+              <div class="pkg-price">2325💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="3770💎 = 2790💵">
+              <div class="pkg-main">3770 Diamonds</div>
+              <div class="pkg-price">2790💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+
+            <div class="pkg-card" data-package="5060💎 = 3720💵">
+              <div class="pkg-main">5060 Diamonds</div>
+              <div class="pkg-price">3720💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="10120💎 = 7450💵">
+              <div class="pkg-main">10120 Diamonds</div>
+              <div class="pkg-price">7450💵</div>
+              <div class="pkg-icon">💎</div>
+            </div>
+            <div class="pkg-card" data-package="Weekly = 185💵">
+              <div class="pkg-main">Weekly Membership</div>
+              <div class="pkg-price">185💵</div>
+              <div class="pkg-icon">📅</div>
+            </div>
+
+            <div class="pkg-card" data-package="Monthly = 930💵">
+              <div class="pkg-main">Monthly Membership</div>
+              <div class="pkg-price">930💵</div>
+              <div class="pkg-icon">📅</div>
+            </div>
+            <div class="pkg-card" data-package="Level up pass = 450💵">
+              <div class="pkg-main">Level Up Pass</div>
+              <div class="pkg-price">450💵</div>
+              <div class="pkg-icon">⬆️</div>
+            </div>
+          </div>
+
+          <button class="buy-btn" type="button" onclick="sendOrder()">
+            🛒 Buy Now!
+          </button>
+          <p class="small-note" style="margin-top:6px;">
+            When you tap “Buy Now”, WhatsApp will open with your UID and selected
+            package. Then pay using eSewa / Khalti / NMB and send the screenshot.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- back -->
+  <p class="back-link">
+    ⬅ <a href="index.html">Back to Home (GameTopUp Hub)</a>
+  </p>
+
+  <footer>
+    Shop Name: GameTopUp Hub · Owner: <b>Aarav Giri</b> · WhatsApp: 9842128071
+  </footer>
+</div>
+
+<script>
+  // handle package selection
+  const cards = document.querySelectorAll('.pkg-card');
+  let selectedPackage = '';
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      cards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      selectedPackage = card.getAttribute('data-package');
+    });
+  });
+
+  function sendOrder() {
+    const uid = document.getElementById('uid').value.trim();
+    const ign = document.getElementById('ign').value.trim();
+
+    if (!uid) {
+      alert('Please enter your Free Fire UID.');
+      return;
+    }
+    if (!selectedPackage) {
+      alert('Please select a diamond package.');
+      return;
+    }
+
+    const msg =
+      'Free Fire Diamond Top-Up Order (GameTopUp Hub)\n\n' +
+      'UID: ' + uid + '\n' +
+      (ign ? ('IGN: ' + ign + '\n') : '') +
+      'Package: ' + selectedPackage + '\n\n' +
+      'I will pay using eSewa / Khalti / NMB and send screenshot.';
+
+    const url = 'https://wa.me/9779842128071?text=' + encodeURIComponent(msg);
+    window.open(url, '_blank');
+  }
+</script>
+</body>
+</html>
+
+
